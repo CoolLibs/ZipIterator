@@ -54,9 +54,9 @@ public:
   decltype(auto) get() const {return *std::get<N>(ptr);}
 
   #define OPERATOR(OP) \
-    bool operator OP(const ZipRef & o) const { return val() OP o.val(); } \
-    inline friend bool operator OP(const ZipRef& r, const std::tuple<T...>& t) { return r.val() OP t; } \
-    inline friend bool operator OP(const std::tuple<T...>& t, const ZipRef& r) { return t OP r.val(); }
+    bool operator OP(const ZipRef & o) const { return std::get<0>(val()) OP std::get<0>(o.val()); } \
+    inline friend bool operator OP(const ZipRef& r, const std::tuple<T...>& t) { return std::get<0>(r.val()) OP std::get<0>(t); } \
+    inline friend bool operator OP(const std::tuple<T...>& t, const ZipRef& r) { return std::get<0>(t) OP std::get<0>(r.val()); }
 
     OPERATOR(==) OPERATOR(<=) OPERATOR(>=)
     OPERATOR(!=) OPERATOR(<)  OPERATOR(>)
