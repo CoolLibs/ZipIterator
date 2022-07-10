@@ -113,6 +113,10 @@ public:
   ZipIter(ZipIter&& rhs) = default;
   ZipIter(const IT&... rhs): it(rhs...) {}
 
+  auto get_iterator() const {
+    return it;
+  }
+
   ZipIter& operator=(const ZipIter& rhs) = default;
   ZipIter& operator=(ZipIter&& rhs) = default;
 
