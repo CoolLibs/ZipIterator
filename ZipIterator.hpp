@@ -145,7 +145,7 @@ public:
   bool operator==(const ZipIter& rhs) const { return  one_is_equal(rhs); }
   bool operator!=(const ZipIter& rhs) const { return none_is_equal(rhs); }
   #define OPERATOR(OP) \
-    bool operator OP(const ZipIter& rhs) const {return it OP rhs.it;}
+    bool operator OP(const ZipIter& rhs) const {return std::get<0>(it) OP std::get<0>(rhs.it);}
     OPERATOR(<=) OPERATOR(>=)
     OPERATOR(<)  OPERATOR(>)
   #undef OPERATOR
